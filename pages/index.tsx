@@ -1,5 +1,7 @@
+import LoginContainer from '../containers/auth/LoginContainer';
+
 const Home = () => {
-  return <>Hi</>;
+  return <LoginContainer />;
 };
 
 export default Home;
