@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-const FooterBlock = styled.div`
+const FooterBlock = styled.footer`
   width: 100%;
+  background-color: #eee;
+  color: #555;
 `;
 
 const Footer = () => {
