@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Login from '../../components/auth/Login';
+import { response } from 'express';
 
 export const checkLoggedInOrLogin = async (
   username: string,
@@ -14,22 +15,25 @@ export const checkLoggedInOrLogin = async (
         },
       });
 
-      return loggedIn?.data;
+      // return loggedIn.data;
+      return true;
     } else if (!document.cookie) {
-      const response = await axios.post('http://localhost:4000/auth/login', {
-        username,
-        password,
-      });
+      if (location.href === '/') {
+        const response = await axios.post('http://localhost:4000/auth/login', {
+          username,
+          password,
+        });
 
-      if (response.status < 200 && response.status >= 300) {
-        return null;
+        // if (response.status < 200 && response.status >= 300) {
+        //   return null;
+        // }
+        return true;
+        document.cookie = `Authentication=${response.data}; Max-Age=${
+          60 * 60 * 24 * 2
+        }`;
+      } else if (!document.cookie && location.href !== '/') {
+        // location.href = '/';
       }
-
-      document.cookie = `Authentication=${response.data}; Max-Age=${
-        60 * 60 * 24 * 2
-      }`;
-
-      location.href;
     }
   } catch (e) {
     console.error(e);
