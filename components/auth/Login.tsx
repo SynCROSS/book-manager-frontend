@@ -4,24 +4,30 @@ const LoginBlock = styled.div`
   text-align: left;
 `;
 
-const LoginButton = styled.button`
+export const Button = styled.button`
   width: 100%;
   margin: 0.5rem auto;
   padding: 0.2rem 0;
   cursor: pointer;
 
   font-size: 16px;
-  background-color: cornflowerblue;
+  background-color: #1877f2;
   border: none;
   border-radius: 0.5rem;
   color: #fff;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    background-color: #2080ff;
+  }
 `;
 
-const RegisterWriting = styled.p`
+export const Writing = styled.p`
   font-size: 14px;
   margin: auto;
 `;
-const RegisterLink = styled.a`
+
+export const WritingLink = styled.a`
   color: cornflowerblue;
 `;
 
@@ -33,7 +39,7 @@ const Login = ({ login }) => {
         <input type="text" id="username" placeholder="Username" />
         Password
         <input type="password" id="password" placeholder="Password" />
-        <LoginButton
+        <Button
           onClick={() =>
             login(
               document.getElementById('username').value,
@@ -42,12 +48,12 @@ const Login = ({ login }) => {
           }
         >
           Login
-        </LoginButton>
+        </Button>
       </LoginBlock>
-      <RegisterWriting>
-        If You Have No Account.{' '}
-        <RegisterLink href="/Register">Create One</RegisterLink>
-      </RegisterWriting>
+      <Writing>
+        If You have No Account.{' '}
+        <WritingLink href="/Register">Create One</WritingLink>
+      </Writing>
     </div>
   );
 };
