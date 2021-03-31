@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Home from '../../components/books/Home';
 
-export const getBookData = async () => {
+const getBookData = async () => {
   try {
     return await axios.get('http://localhost:4000/books');
   } catch (e) {
