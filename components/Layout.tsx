@@ -3,24 +3,23 @@ import { checkLoggedInOrLogin } from '../containers/auth/LoginContainer';
 import Footer from './common/Footer';
 import Header from './common/Header';
 
-const Layout = async ({ children }) => {
+const Layout = ({ children }) => {
   useEffect(() => {
     const checkLoggedIn = async () => {
       const response = await checkLoggedInOrLogin('', '');
+
       if (!(response ?? false)) {
         if (
           location.href !== 'http://localhost:3000/' &&
           location.href !== 'http://localhost:3000/Register'
         ) {
           alert('You Should Log In!');
-          // location.href = 'http://localhost:3000/';
+          location.href = 'http://localhost:3000/';
         }
       } else {
         if (location.href === 'http://localhost:3000/') {
-          console.log(response);
+          location.href = 'http://localhost:3000/Home';
         }
-
-        // location.href = 'http://localhost:3000/Home';
       }
     };
     checkLoggedIn();
@@ -31,7 +30,7 @@ const Layout = async ({ children }) => {
       style={{ height: '100%' }}
     >
       <Header />
-      {/* {children} */}
+      {children}
       <Footer />
     </div>
   );

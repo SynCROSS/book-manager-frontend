@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Login from '../../components/auth/Login';
-import { response } from 'express';
 
 export const checkLoggedInOrLogin = async (
   username: string,
@@ -15,8 +14,7 @@ export const checkLoggedInOrLogin = async (
         },
       });
 
-      // return loggedIn.data;
-      return true;
+      return loggedIn.data;
     } else if (!document.cookie) {
       if (location.href === '/') {
         const response = await axios.post('http://localhost:4000/auth/login', {
@@ -24,10 +22,9 @@ export const checkLoggedInOrLogin = async (
           password,
         });
 
-        // if (response.status < 200 && response.status >= 300) {
-        //   return null;
-        // }
-        return true;
+        if (response.status < 200 && response.status >= 300) {
+          return null;
+        }
         document.cookie = `Authentication=${response.data}; Max-Age=${
           60 * 60 * 24 * 2
         }`;
