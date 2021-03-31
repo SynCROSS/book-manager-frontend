@@ -21,8 +21,8 @@ const BookImage = styled.img`
   width: 100px;
   height: 150px;
   border-radius: 5px;
-  background-color: #fefefe;
-  box-shadow: 10px 10px 30px #d8d8d8, -10px -10px 30px #ffffff;
+  background-color: #fcfcfc;
+  box-shadow: 5px 5px 15px #d6d6d6, -5px -5px 15px #ffffff;
 `;
 
 const Home = ({ books }) => {
