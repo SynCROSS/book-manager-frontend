@@ -16,7 +16,7 @@ export const checkLoggedInOrLogin = async (
 
       return loggedIn.data;
     } else if (!document.cookie) {
-      if (location.href === '/') {
+      if (location.href === 'http://localhost:3000/') {
         const response = await axios.post('http://localhost:4000/auth/login', {
           username,
           password,
@@ -28,8 +28,11 @@ export const checkLoggedInOrLogin = async (
         document.cookie = `Authentication=${response.data}; Max-Age=${
           60 * 60 * 24 * 2
         }`;
-      } else if (!document.cookie && location.href !== '/') {
-        // location.href = '/';
+      } else if (
+        !document.cookie &&
+        location.href !== 'http://localhost:3000/'
+      ) {
+        location.href = 'http://localhost:3000/';
       }
     }
   } catch (e) {
