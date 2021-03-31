@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Home from '../../components/books/Home';
 
-const getBookData = async () => {
+const getAllBooks = async () => {
   try {
     return await axios.get('http://localhost:4000/books');
   } catch (e) {
@@ -10,7 +10,7 @@ const getBookData = async () => {
 };
 
 const HomeContainer = () => {
-  const books = getBookData();
+  const books = getAllBooks();
 
   return <Home books={books} />;
 };
