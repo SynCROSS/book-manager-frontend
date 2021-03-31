@@ -29,6 +29,14 @@ a {
   text-decoration: none;
 }
 
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .flex {
   display: flex;
 }

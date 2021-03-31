@@ -25,10 +25,7 @@ const Layout = ({ children }) => {
     checkLoggedIn();
   }, [children]);
   return (
-    <div
-      className="flex jc-center ai-center flex-dir-col"
-      style={{ height: '100%' }}
-    >
+    <div className="flex jc-center ai-center flex-dir-col">
       <Header />
       {children}
       <Footer />
