@@ -4,6 +4,7 @@ import { Button, Writing, WritingLink } from './Login';
 
 const RegisterBlock = styled.div`
   text-align: left;
+  width: 70%;
 `;
 
 const ErrorMessage = styled.p`
@@ -20,16 +21,16 @@ const Register = ({ register }) => {
 
   const isValidPassword = (password: string, confirm_password: string) => {
     if (password !== confirm_password) {
-      setErr(true);
+      () => setErr(true);
     } else if (password === confirm_password) {
-      setErr(false);
+      () => setErr(false);
     }
     return !err;
   };
 
   return (
-    <div className="main-content flex jc-center flex-dir-col">
-      <RegisterBlock className="flex flex-dir-col">
+    <div className="main-content flex jc-center ai-center flex-dir-col">
+      <RegisterBlock className="flex jc-center flex-dir-col">
         Username <input type="text" id="username" placeholder="Username" />
         Nickname <input type="text" id="nickname" placeholder="Nickname" />
         Password <input type="password" id="password" placeholder="Password" />
@@ -50,9 +51,11 @@ const Register = ({ register }) => {
 
             if (
               isValidPassword(password, confirm_password) &&
-              !username &&
-              !nickname
+              username &&
+              nickname
             ) {
+              console.log(username);
+
               register(username, nickname, password);
             }
           }}
@@ -69,8 +72,8 @@ const Register = ({ register }) => {
           {isValidPassword(password, confirm_password)
             ? 'Password does not match!'
             : ''}
-          {!(username ?? false) ? 'Username must be Required!' : ''}
-          {!(nickname ?? false) ? 'Nickname must be Required!' : ''}
+          {!username ? 'Username must be Required!' : ''}
+          {!nickname ? 'Nickname must be Required!' : ''}
         </ErrorMessage>
       </RegisterBlock>
     </div>

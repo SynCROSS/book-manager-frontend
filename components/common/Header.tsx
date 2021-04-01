@@ -29,17 +29,23 @@ const LogoutButton = styled.button`
   color: #fff;
   border-radius: 50px;
   padding: 5px 7px;
+  cursor: pointer;
 
   font-weight: 900;
   background: linear-gradient(145deg, #942ef2, #7c27cb);
   box-shadow: 2px 2px 6px #7525c0, -2px -2px 6px #9f31ff;
 `;
 
+const Username = styled.div`
+  margin: 0 1rem;
+  display: inline-block;
+`;
+
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(null);
   useEffect(() => {
     checkLoggedInOrLogin('', '').then(result => {
-      setLoggedIn(!!result);
+      setLoggedIn(result);
     });
   }, []);
 
@@ -54,7 +60,10 @@ const Header = () => {
         </Link>
       </div>
       {loggedIn ? (
-        <LogoutButton onClick={logout}>Log Out</LogoutButton>
+        <div>
+          <Username>{loggedIn.username}</Username>
+          <LogoutButton onClick={logout}>Log Out</LogoutButton>
+        </div>
       ) : (
         <div>&nbsp;</div>
       )}

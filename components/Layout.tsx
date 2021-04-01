@@ -13,7 +13,6 @@ const Layout = ({ children }) => {
           location.href !== 'http://localhost:3000/' &&
           location.href !== 'http://localhost:3000/Register'
         ) {
-          alert('You Should Log In!');
           location.href = 'http://localhost:3000/';
         }
       } else {
