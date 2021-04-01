@@ -6,11 +6,17 @@ export const checkLoggedInOrLogin = async (
   password: string,
 ) => {
   try {
-    const cookie = document.cookie.split('=');
-    if (document.cookie && cookie[0] === 'Authentication') {
+    const cookie = document.cookie
+      ?.split(';')
+      .find(
+        c =>
+          c.split('=')[0].substr(0, 'Authentication'.length) ===
+          'Authentication',
+      );
+    if (document.cookie && !!cookie) {
       const loggedIn = await axios.get('http://localhost:4000/auth/check', {
         headers: {
-          Authorization: cookie[1],
+          Authorization: cookie.split('=')[1],
         },
       });
 
@@ -28,9 +34,11 @@ export const checkLoggedInOrLogin = async (
         document.cookie = `Authentication=${response.data}; Max-Age=${
           60 * 60 * 24 * 2
         }`;
+
+        location.href = 'http://localhost:3000/Home';
       } else if (
-        !document.cookie &&
-        location.href !== 'http://localhost:3000/'
+        location.href !== 'http://localhost:3000/' &&
+        location.href !== 'http://localhost:3000/Register'
       ) {
         location.href = 'http://localhost:3000/';
       }
