@@ -33,7 +33,7 @@ export const WritingLink = styled.a`
 
 const Login = ({ login }) => {
   return (
-    <div style={{ margin: 'auto' }}>
+    <div className="main-content flex jc-center flex-dir-col">
       <LoginBlock className="flex flex-dir-col">
         Username
         <input type="text" id="username" placeholder="Username" />
@@ -49,11 +49,11 @@ const Login = ({ login }) => {
         >
           Login
         </Button>
+        <Writing>
+          If You have No Account.{' '}
+          <WritingLink href="/Register">Create One</WritingLink>
+        </Writing>
       </LoginBlock>
-      <Writing>
-        If You have No Account.{' '}
-        <WritingLink href="/Register">Create One</WritingLink>
-      </Writing>
     </div>
   );
 };

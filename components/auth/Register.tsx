@@ -13,6 +13,10 @@ const ErrorMessage = styled.p`
 
 const Register = ({ register }) => {
   const [err, setErr] = useState(false);
+  const [username, setUsername] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
 
   const isValidPassword = (password: string, confirm_password: string) => {
     if (password !== confirm_password) {
@@ -24,7 +28,7 @@ const Register = ({ register }) => {
   };
 
   return (
-    <div style={{ margin: 'auto' }}>
+    <div className="main-content flex jc-center flex-dir-col">
       <RegisterBlock className="flex flex-dir-col">
         Username <input type="text" id="username" placeholder="Username" />
         Nickname <input type="text" id="nickname" placeholder="Nickname" />
@@ -37,16 +41,17 @@ const Register = ({ register }) => {
         />
         <Button
           onClick={() => {
-            const username = document.getElementById('username').value;
-            const nickname = document.getElementById('nickname').value;
-            const password = document.getElementById('password').value ?? '';
-            const confirm_password =
-              document.getElementById('confirm_password').value ?? '';
+            setUsername(document.getElementById('username').value ?? '');
+            setNickname(document.getElementById('nickname').value ?? '');
+            setPassword(document.getElementById('password').value ?? '');
+            setConfirmPassword(
+              document.getElementById('confirm_password').value ?? '',
+            );
 
             if (
               isValidPassword(password, confirm_password) &&
-              (username ?? false) &&
-              (nickname ?? false)
+              !username &&
+              !nickname
             ) {
               register(username, nickname, password);
             }
@@ -54,16 +59,20 @@ const Register = ({ register }) => {
         >
           Sign Up!
         </Button>
+        <Writing>
+          If You already had an Account?{' '}
+          <WritingLink href="/">Log In</WritingLink>
+        </Writing>
+        <ErrorMessage
+          style={err ? { visibility: 'visible' } : { visibility: 'hidden' }}
+        >
+          {isValidPassword(password, confirm_password)
+            ? 'Password does not match!'
+            : ''}
+          {!(username ?? false) ? 'Username must be Required!' : ''}
+          {!(nickname ?? false) ? 'Nickname must be Required!' : ''}
+        </ErrorMessage>
       </RegisterBlock>
-      <Writing>
-        If You already had an Account?{' '}
-        <WritingLink href="http://localhost:3000/">Log In</WritingLink>
-      </Writing>
-      <ErrorMessage
-        style={err ? { visibility: 'visible' } : { visibility: 'hidden' }}
-      >
-        Password does not match!
-      </ErrorMessage>
     </div>
   );
 };
