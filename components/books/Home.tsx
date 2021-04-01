@@ -7,17 +7,17 @@ const HomeBlock = styled.div`
   width: 50%;
 `;
 
-const BookList = styled.ul`
+export const BookList = styled.ul`
   flex-wrap: wrap;
   align-items: baseline;
 `;
 
-const BookItem = styled.li`
+export const BookItem = styled.li`
   margin: 0.5rem 1rem;
   width: 180px;
 `;
 
-const BookImage = styled.img`
+export const BookImage = styled.img`
   width: 100px;
   height: 150px;
   border-radius: 5px;
