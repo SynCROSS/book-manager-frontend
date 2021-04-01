@@ -42,10 +42,10 @@ const Header = () => {
   return (
     <HeaderBlock className="flex ai-center">
       <div className="flex jc-center ai-center">
-        <Link href="http://localhost:3000/Home">
+        <Link href="/Home">
           <RouterLink>Home</RouterLink>
         </Link>
-        <Link href="http://localhost:3000/Search">
+        <Link href="/Search">
           <RouterLink>Search</RouterLink>
         </Link>
       </div>
