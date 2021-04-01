@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { checkLoggedInOrLogin } from '../../containers/auth/LoginContainer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const logout = () => {
   document.cookie = 'Authentication=; expires=Thu, 01 Jan 1970 00:00:01 GMT';
@@ -37,7 +37,11 @@ const LogoutButton = styled.button`
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(null);
-  checkLoggedInOrLogin('', '').then(result => setLoggedIn(!!result));
+  useEffect(() => {
+    checkLoggedInOrLogin('', '').then(result => {
+      setLoggedIn(!!result);
+    });
+  }, []);
 
   return (
     <HeaderBlock className="flex ai-center">
