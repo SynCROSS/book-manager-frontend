@@ -31,6 +31,7 @@ export const checkLoggedInOrLogin = async (
         if (response.status < 200 && response.status >= 300) {
           return null;
         }
+
         document.cookie = `Authentication=${response.data}; Max-Age=${
           60 * 60 * 24 * 2
         }`;
