@@ -53,8 +53,6 @@ const Register = ({ register }) => {
               username &&
               nickname
             ) {
-              console.log(username);
-
               register(username, nickname, password);
             }
           }}
