@@ -4,7 +4,6 @@ import { Button, Writing, WritingLink } from './Login';
 
 const RegisterBlock = styled.div`
   text-align: left;
-  width: 70%;
 `;
 
 const ErrorMessage = styled.p`
@@ -72,7 +71,9 @@ const Register = ({ register }) => {
           {isValidPassword(password, confirm_password)
             ? 'Password does not match!'
             : ''}
+          <br />
           {!username ? 'Username must be Required!' : ''}
+          <br />
           {!nickname ? 'Nickname must be Required!' : ''}
         </ErrorMessage>
       </RegisterBlock>
