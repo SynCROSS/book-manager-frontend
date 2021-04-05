@@ -18,8 +18,8 @@ export const BookItem = styled.li`
 `;
 
 export const BookImage = styled.img`
-  width: 100px;
-  height: 150px;
+  width: ${props => props.width || '100px'};
+  height: ${props => props.height || '150px'};
   border-radius: 5px;
   background-color: #fcfcfc;
   box-shadow: 5px 5px 15px #d6d6d6, -5px -5px 15px #ffffff;
@@ -31,15 +31,15 @@ const Home = ({ books }) => {
   books.then(result => setData(result.data));
 
   return (
-    <HomeBlock>
+    <HomeBlock className="main-content">
       <BookList className="flex jc-center ai-center">
         {data?.map(book => (
-          <BookItem key={book.book_id}>
-            <Link href={`/${book.book_id}`}>
+          <BookItem key={book?.book_id}>
+            <Link href={`/${book?.book_id}`}>
               <a>
                 <BookImage
-                  src={book.cover}
-                  alt={book.title}
+                  src={book?.cover}
+                  alt={book?.title}
                   placeholder=""
                   loading="lazy"
                 />
