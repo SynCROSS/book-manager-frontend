@@ -38,38 +38,47 @@ const Register = ({ register, isThereSameUser }) => {
           type="text"
           id="username"
           placeholder="Username"
-          onKeyUp={() =>
-            setUsername(document.getElementById('username').value ?? '')
-          }
+          onKeyUp={e => {
+            if (e.key === 'Enter')
+              document.getElementById('register_btn').click();
+            else setUsername(document.getElementById('username').value ?? '');
+          }}
         />
         Nickname{' '}
         <input
           type="text"
           id="nickname"
           placeholder="Nickname"
-          onKeyUp={() =>
-            setNickname(document.getElementById('nickname').value ?? '')
-          }
+          onKeyUp={e => {
+            if (e.key === 'Enter')
+              document.getElementById('register_btn').click();
+            else setNickname(document.getElementById('nickname').value ?? '');
+          }}
         />
         Password{' '}
         <input
           type="password"
           id="password"
-          placeholder="Password"
-          onKeyUp={() =>
-            setPassword(document.getElementById('password').value ?? '')
-          }
+          placeholder="Password [Optional]"
+          onKeyUp={e => {
+            if (e.key === 'Enter')
+              document.getElementById('register_btn').click();
+            else setPassword(document.getElementById('password').value ?? '');
+          }}
         />
         Confirm Password{' '}
         <input
           type="password"
           id="confirm_password"
           placeholder="Confirm Password"
-          onKeyUp={() =>
-            setConfirmPassword(
-              document.getElementById('confirm_password').value ?? '',
-            )
-          }
+          onKeyUp={e => {
+            if (e.key === 'Enter')
+              document.getElementById('register_btn').click();
+            else
+              setConfirmPassword(
+                document.getElementById('confirm_password').value ?? '',
+              );
+          }}
         />
         <Button
           onClick={() => {
@@ -93,49 +102,47 @@ const Register = ({ register, isThereSameUser }) => {
           If You already had an Account?{' '}
           <WritingLink href="/">Log In</WritingLink>
         </Writing>
-        {
-          <div>
-            <ErrorMessage
-              style={!username ? { display: 'block' } : { display: 'none' }}
-            >
-              Username must be Required!
-            </ErrorMessage>
-            <ErrorMessage
-              style={sameUser ? { display: 'block' } : { display: 'none' }}
-            >
-              Username is Taken!
-            </ErrorMessage>
-            <ErrorMessage
-              style={!nickname ? { display: 'block' } : { display: 'none' }}
-            >
-              Nickname must be Required!
-            </ErrorMessage>
-            <ErrorMessage
-              style={
-                !isValidPassword(password, confirm_password)
-                  ? { display: 'block' }
-                  : { display: 'none' }
-              }
-            >
-              Password does not match!
-            </ErrorMessage>
-            <ErrorList
-              style={
-                password !== '' &&
-                !password.match(
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{10,}$/,
-                )
-                  ? { display: 'block' }
-                  : { display: 'none' }
-              }
-            >
-              Check the password rules below.
-              <li>More Than 10 Chars</li>
-              <li>Must Contain at Least 1 Number</li>
-              <li>Must Contain at Least 1 Special Char</li>
-            </ErrorList>
-          </div>
-        }
+        <div style={{ textAlign: 'center' }}>
+          <ErrorMessage
+            style={!username ? { display: 'block' } : { display: 'none' }}
+          >
+            Username must be Required!
+          </ErrorMessage>
+          <ErrorMessage
+            style={sameUser ? { display: 'block' } : { display: 'none' }}
+          >
+            Username is Taken!
+          </ErrorMessage>
+          <ErrorMessage
+            style={!nickname ? { display: 'block' } : { display: 'none' }}
+          >
+            Nickname must be Required!
+          </ErrorMessage>
+          <ErrorMessage
+            style={
+              !isValidPassword(password, confirm_password)
+                ? { display: 'block' }
+                : { display: 'none' }
+            }
+          >
+            Password does not match!
+          </ErrorMessage>
+          <ErrorList
+            style={
+              password !== '' &&
+              !password.match(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{10,}$/,
+              )
+                ? { display: 'block' }
+                : { display: 'none' }
+            }
+          >
+            Check the password rules below.
+            <li>More Than 10 Chars</li>
+            <li>Must Contain at Least 1 Number</li>
+            <li>Must Contain at Least 1 Special Char</li>
+          </ErrorList>
+        </div>
       </RegisterBlock>
     </div>
   );

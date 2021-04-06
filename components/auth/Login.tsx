@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const LoginBlock = styled.div`
@@ -32,21 +33,35 @@ export const WritingLink = styled.a`
 `;
 
 const Login = ({ login }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <div className="main-content flex jc-center flex-dir-col">
       <LoginBlock className="flex flex-dir-col">
         Username
-        <input type="text" id="username" placeholder="Username" />
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          onKeyUp={e => {
+            if (e.key === 'Enter' && username)
+              document.getElementById('login_btn').click();
+            else setUsername(document.getElementById('username').value);
+          }}
+        />
         Password
-        <input type="password" id="password" placeholder="Password" />
-        <Button
-          onClick={() =>
-            login(
-              document.getElementById('username').value,
-              document.getElementById('password').value,
-            )
-          }
-        >
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          onKeyUp={e => {
+            if (e.key === 'Enter' && username)
+              document.getElementById('login_btn').click();
+            else setPassword(document.getElementById('password').value);
+          }}
+        />
+        <Button id="login_btn" onClick={() => login(username, password)}>
           Login
         </Button>
         <Writing>
