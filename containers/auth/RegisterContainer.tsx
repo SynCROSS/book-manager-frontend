@@ -1,6 +1,13 @@
 import axios from 'axios';
 import Register from '../../components/auth/Register';
 
+export const isThereSameUser = async (username: string) => {
+  if (username !== '')
+    return await axios
+      .get('http://localhost:4000/users?username=' + username)
+      .then(result => result);
+};
+
 const RegisterContainer = () => {
   const register = async (
     username: string,
@@ -25,7 +32,7 @@ const RegisterContainer = () => {
     }
   };
 
-  return <Register register={register} />;
+  return <Register register={register} isThereSameUser={isThereSameUser} />;
 };
 
 export default RegisterContainer;
