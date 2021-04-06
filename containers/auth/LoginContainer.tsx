@@ -13,14 +13,14 @@ export const checkLoggedInOrLogin = async (
           c.split('=')[0].substr(0, 'Authentication'.length) ===
           'Authentication',
       );
-    if (document.cookie && !!cookie) {
-      const loggedIn = await axios.get('http://localhost:4000/auth/check', {
-        headers: {
-          Authorization: cookie.split('=')[1],
-        },
-      });
-
-      return loggedIn.data;
+    if (document.cookie && cookie) {
+      return await axios
+        .get('http://localhost:4000/auth/check', {
+          headers: {
+            Authorization: cookie.split('=')[1],
+          },
+        })
+        .then(result => result.data);
     } else if (!document.cookie) {
       if (location.href === 'http://localhost:3000/') {
         const response = await axios.post('http://localhost:4000/auth/login', {
