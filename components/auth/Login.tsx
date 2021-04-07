@@ -45,7 +45,7 @@ const Login = ({ login }) => {
           id="username"
           placeholder="Username"
           onKeyUp={e => {
-            if (e.key === 'Enter' && username)
+            if (e.key === 'Enter' && !!username && !!password)
               document.getElementById('login_btn').click();
             else setUsername(document.getElementById('username').value);
           }}
@@ -56,7 +56,7 @@ const Login = ({ login }) => {
           id="password"
           placeholder="Password"
           onKeyUp={e => {
-            if (e.key === 'Enter' && username)
+            if (e.key === 'Enter' && !!username && !!password)
               document.getElementById('login_btn').click();
             else setPassword(document.getElementById('password').value);
           }}

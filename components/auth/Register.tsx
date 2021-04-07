@@ -59,7 +59,7 @@ const Register = ({ register, isThereSameUser }) => {
         <input
           type="password"
           id="password"
-          placeholder="Password [Optional]"
+          placeholder="Password"
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('register_btn').click();
@@ -88,9 +88,10 @@ const Register = ({ register, isThereSameUser }) => {
 
             if (
               isValidPassword(password, confirm_password) &&
-              username &&
+              !!password &&
+              !!username &&
               !sameUser &&
-              nickname
+              !!nickname
             ) {
               register(username, nickname, password);
             }
@@ -119,6 +120,11 @@ const Register = ({ register, isThereSameUser }) => {
             Nickname must be Required!
           </ErrorMessage>
           <ErrorMessage
+            style={!password ? { display: 'block' } : { display: 'none' }}
+          >
+            Password must be Required!
+          </ErrorMessage>
+          <ErrorMessage
             style={
               !isValidPassword(password, confirm_password)
                 ? { display: 'block' }
@@ -129,7 +135,6 @@ const Register = ({ register, isThereSameUser }) => {
           </ErrorMessage>
           <ErrorList
             style={
-              password !== '' &&
               !password.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{10,}$/,
               )
