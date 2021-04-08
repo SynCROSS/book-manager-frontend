@@ -14,7 +14,7 @@ const InputWrapper = styled.div`
 
 const Input = styled.input`
   border: 10px solid darkblue;
-  width: 20vw;
+  width: 100%;
   font-size: 16px;
 `;
 
@@ -23,7 +23,7 @@ const Search = ({ getBooks }) => {
 
   return (
     <SearchBlock className="main-content flex jc-center flex-dir-col">
-      <InputWrapper className="flex ai-center">
+      <InputWrapper className="flex jc-center ai-center">
         <Input
           type="text"
           placeholder="🔍 Search"
