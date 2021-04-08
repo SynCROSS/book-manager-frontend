@@ -24,7 +24,7 @@ const AddContainer = () => {
   }, []);
 
   const addBook = async (
-    id: number,
+    book_id: number,
     title: string = '',
     author_lf: string = '',
     author_fl: string = '',
@@ -37,7 +37,7 @@ const AddContainer = () => {
     entry_stamp: number = Date.now(),
   ) =>
     await axios.post('http://localhost:4000/books/add', {
-      id,
+      book_id,
       title,
       author_lf,
       author_fl,
