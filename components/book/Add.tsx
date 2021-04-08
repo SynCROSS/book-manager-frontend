@@ -14,9 +14,7 @@ const Add = ({ addBook }) => {
   const [language_main, setLanguageMain] = useState('');
   const [language_secondary, setLanguageSecondary] = useState('');
   const [language_original, setLanguageOriginal] = useState('');
-  const [cover, setCover] = useState(
-    'https://dummyimage.com/200x300/000/ff1746.png&text=Book',
-  );
+  const [cover, setCover] = useState('http://via.placeholder.com/200x300');
   const [entry_stamp, setEntryStamp] = useState(Date.now());
 
   return (
@@ -82,8 +80,8 @@ const Add = ({ addBook }) => {
           type="number"
           id="rating"
           placeholder="Rating"
-          max="5"
-          min="0"
+          min={0}
+          max={5}
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('addBook_btn').click();
@@ -95,7 +93,8 @@ const Add = ({ addBook }) => {
           type="text"
           id="language_main"
           placeholder="Main Language"
-          max="3"
+          minLength={3}
+          maxLength={3}
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('addBook_btn').click();
@@ -107,7 +106,8 @@ const Add = ({ addBook }) => {
           type="text"
           id="language_secondary"
           placeholder="Secondary Language"
-          max="3"
+          minLength={3}
+          maxLength={3}
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('addBook_btn').click();
@@ -119,7 +119,8 @@ const Add = ({ addBook }) => {
           type="text"
           id="language_original"
           placeholder="Original Language"
-          max="3"
+          minLength={3}
+          maxLength={3}
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('addBook_btn').click();
@@ -152,6 +153,7 @@ const Add = ({ addBook }) => {
           }}
         />
         <Button
+          id="addBook_btn"
           onClick={() =>
             !!id &&
             !!title &&
