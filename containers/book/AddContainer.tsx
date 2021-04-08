@@ -12,15 +12,17 @@ export const checkPermission = async (username: string) => {
 
 const AddContainer = () => {
   const [username, setUsername] = useState('');
-  const [permission, setPermission] = useState(null);
+  // const [permission, setPermission] = useState(null);
 
   useEffect(() => {
-    checkLoggedInOrLogin('', '').then(result => setUsername(result?.username));
-    const getPermission = async () => {
-      const userPermission = await checkPermission(username);
-      return userPermission?.data;
-    };
-    getPermission().then(setPermission);
+    checkLoggedInOrLogin('', '').then(
+      result => !!result?.username && setUsername(result?.username),
+    );
+    // const getPermission = async () => {
+    //   const userPermission = await checkPermission(username);
+    //   return userPermission?.data;
+    // };
+    // getPermission().then(setPermission);
   }, []);
 
   const addBook = async (
