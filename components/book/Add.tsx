@@ -5,7 +5,7 @@ import { Button } from '../auth/Login';
 const AddBlock = styled.div``;
 
 const Add = ({ addBook }) => {
-  const [id, setId] = useState(0);
+  const [book_id, setBookId] = useState(0);
   const [title, setTitle] = useState('');
   const [author_lf, setAuthorLf] = useState('');
   const [author_fl, setAuthorFl] = useState('');
@@ -23,12 +23,12 @@ const Add = ({ addBook }) => {
         ID
         <input
           type="number"
-          id="id"
+          id="book_id"
           placeholder="ID"
           onKeyUp={e => {
             if (e.key === 'Enter')
               document.getElementById('addBook_btn').click();
-            else setId(+e.currentTarget.value);
+            else setBookId(+e.currentTarget.value);
           }}
         />
         Title
@@ -155,14 +155,14 @@ const Add = ({ addBook }) => {
         <Button
           id="addBook_btn"
           onClick={() =>
-            !!id &&
+            !!book_id &&
             !!title &&
             !!author_lf &&
             !!author_fl &&
             !!cover &&
             !!entry_stamp &&
             addBook(
-              id,
+              book_id,
               title,
               author_lf,
               author_fl,
