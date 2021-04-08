@@ -32,10 +32,30 @@ const checkInBook = async (id: number, username: string) => {
   }
 };
 
+const editBook = (id: number) => {
+  if (!isNaN(id) && typeof id === 'number') location.href = '/update/' + id;
+};
+
+const deleteBook = async (id: number) => {
+  try {
+    return await axios.delete('http://localhost:4000/books/' + id);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 const DetailContainer = ({ id }) => {
   const book = getBookById(+id);
 
-  return <Detail book={book} checkOut={checkOutBook} checkIn={checkInBook} />;
+  return (
+    <Detail
+      book={book}
+      checkOut={checkOutBook}
+      checkIn={checkInBook}
+      editBook={() => editBook(id)}
+      deleteBook={() => deleteBook(id)}
+    />
+  );
 };
 
 export default DetailContainer;

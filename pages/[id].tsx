@@ -7,6 +7,7 @@ const Detail = () => {
 
   if (!isNaN(+id) && typeof +id === 'number')
     return <DetailContainer id={+id} />;
+  return <div className="main-content"></div>;
 };
 
 export default Detail;

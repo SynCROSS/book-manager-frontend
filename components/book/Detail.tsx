@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { BookImage } from '../books/Home';
 import { checkLoggedInOrLogin } from '../../containers/auth/LoginContainer';
+import { checkPermission } from '../../containers/book/AddContainer';
 
 const DetailBlock = styled.div`
   width: 100%;
@@ -42,13 +43,35 @@ const CheckButton = styled.button`
   }
 `;
 
-const Detail = ({ book, checkOut, checkIn, isBorrowed = false }) => {
+const AdminButtonWrapper = styled.div`
+  width: 100%;
+  justify-content: space-between;
+
+  & > button {
+    width: 100%;
+
+    &:hover {
+      background-color: #f4f4f4;
+    }
+  }
+`;
+
+const Detail = ({
+  book,
+  checkOut,
+  checkIn,
+  editBook,
+  deleteBook,
+  isBorrowed = false,
+}) => {
   const [data, setData] = useState(null);
   const [username, setUsername] = useState('');
   const [borrowed, setBorrowed] = useState(isBorrowed);
+  const [permission, setPermission] = useState('normal');
 
   book.then(result => setData(result?.data));
   checkLoggedInOrLogin('', '').then(result => setUsername(result?.username));
+  checkPermission(username).then(result => setPermission(result?.data));
 
   return (
     <DetailBlock className="main-content flex flex-dir-col">
@@ -91,6 +114,23 @@ const Detail = ({ book, checkOut, checkIn, isBorrowed = false }) => {
                 &nbsp;
                 {`★${data?.rating}`}
               </ButtonWrapper>
+              {permission === 'admin' && (
+                <AdminButtonWrapper className="flex ai-center">
+                  <button onClick={editBook}>Edit</button>
+                  <button
+                    onClick={() => {
+                      if (
+                        confirm('Are you sure you want to delete this Book?')
+                      ) {
+                        deleteBook();
+                        location.href = '/Home';
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
+                </AdminButtonWrapper>
+              )}
             </div>
           </UnderTitle>
         </div>
