@@ -32,7 +32,7 @@ const Home = ({ books }) => {
 
   return (
     <HomeBlock className="main-content">
-      <BookList className="flex jc-center ai-center">
+      <BookList className="flex jc-center">
         {data?.map(book => (
           <BookItem key={book?.book_id}>
             <Link href={`/${book?.book_id}`}>
