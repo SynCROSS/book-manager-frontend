@@ -37,12 +37,7 @@ const Home = ({ books }) => {
           <BookItem key={book?.book_id}>
             <Link href={`/${book?.book_id}`}>
               <a>
-                <BookImage
-                  src={book?.cover}
-                  alt={book?.title}
-                  placeholder=""
-                  loading="lazy"
-                />
+                <BookImage src={book?.cover} alt="" loading="lazy" />
                 <br />
                 {book.title.length > 30
                   ? book.title.slice(0, 30) + ' . . . '
