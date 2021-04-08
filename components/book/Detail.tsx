@@ -65,11 +65,7 @@ const Detail = ({ book, checkOut, checkIn, isBorrowed = false }) => {
               loading="lazy"
             />
             <div className="flex jc-center ai-center flex-dir-col">
-              <div>
-                {data?.author_fl + ' &' ?? '-'}
-                &nbsp;
-                {data?.author_lf ?? '-'}
-              </div>
+              <div>{data?.author_lf ?? '-'}</div>
               <ButtonWrapper className="flex ai-center">
                 {borrowed ? (
                   <CheckButton
