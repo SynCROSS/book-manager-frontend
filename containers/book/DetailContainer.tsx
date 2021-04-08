@@ -1,9 +1,10 @@
 import axios from 'axios';
 import Detail from '../../components/book/Detail';
 
-const getBookById = async (id: number) => {
+export const getBookById = async (id: number) => {
   try {
-    if (!isNaN(id)) return await axios.get('http://localhost:4000/books/' + id);
+    if (!isNaN(id) && typeof id === 'number')
+      return await axios.get('http://localhost:4000/books/' + id);
   } catch (e) {
     console.error(e);
   }
