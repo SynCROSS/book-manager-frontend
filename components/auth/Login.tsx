@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { ErrorMessage } from './Register';
 
 const LoginBlock = styled.div`
   text-align: left;
@@ -68,6 +69,18 @@ const Login = ({ login }) => {
           If You have No Account.{' '}
           <WritingLink href="/Register">Create One</WritingLink>
         </Writing>
+        <div style={{ textAlign: 'center' }}>
+          <ErrorMessage
+            style={!username ? { display: 'block' } : { display: 'none' }}
+          >
+            Username is Required!
+          </ErrorMessage>
+          <ErrorMessage
+            style={!password ? { display: 'block' } : { display: 'none' }}
+          >
+            Password is Required!
+          </ErrorMessage>
+        </div>
       </LoginBlock>
     </div>
   );
