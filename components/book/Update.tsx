@@ -237,27 +237,28 @@ const Update = ({ prevData, updateBook }) => {
         />
         <Button
           id="editBook_btn"
-          onClick={() =>
+          onClick={() => {
             !!book_id &&
-            !!title &&
-            !!author_lf &&
-            !!author_fl &&
-            !!cover &&
-            !!entry_stamp &&
-            updateBook(
-              book_id,
-              title,
-              author_lf ?? '',
-              author_fl ?? '',
-              ISBN ?? 0,
-              rating ?? 0,
-              language_main ?? '',
-              language_secondary ?? '',
-              language_original ?? '',
-              cover ?? '',
-              +entry_stamp ?? Date.now(),
-            )
-          }
+              !!title &&
+              !!author_lf &&
+              !!author_fl &&
+              !!cover &&
+              !!entry_stamp &&
+              updateBook(
+                book_id,
+                title,
+                author_lf ?? '',
+                author_fl ?? '',
+                ISBN ?? 0,
+                rating ?? 0,
+                language_main ?? '',
+                language_secondary ?? '',
+                language_original ?? '',
+                cover ?? '',
+                +entry_stamp ?? Date.now(),
+              );
+            history.back();
+          }}
         >
           Edit Book!
         </Button>
