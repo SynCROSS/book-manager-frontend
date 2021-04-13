@@ -1,7 +1,5 @@
 import axios from 'axios';
 import Add from '../../components/book/Add';
-import { useEffect, useState } from 'react';
-import { checkLoggedInOrLogin } from '../auth/LoginContainer';
 
 export const checkPermission = async (username: string) => {
   if (!!username)
@@ -11,20 +9,6 @@ export const checkPermission = async (username: string) => {
 };
 
 const AddContainer = () => {
-  const [username, setUsername] = useState('');
-  // const [permission, setPermission] = useState(null);
-
-  useEffect(() => {
-    checkLoggedInOrLogin('', '').then(
-      result => !!result?.username && setUsername(result?.username),
-    );
-    // const getPermission = async () => {
-    //   const userPermission = await checkPermission(username);
-    //   return userPermission?.data;
-    // };
-    // getPermission().then(setPermission);
-  }, []);
-
   const addBook = async (
     book_id: number,
     title: string = '',
